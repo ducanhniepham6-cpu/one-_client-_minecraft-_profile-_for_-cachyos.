@@ -1,0 +1,57 @@
+version: "1.8.9"
+profile_name: "Bedwars Visual"
+java_version: "8"
+loader: "OptiFine"
+platform: "CachyOS/Linux"
+
+safe_mode: true
+cheat_features_enabled: false
+
+memory:
+  min_mb: 1024
+  max_mb: 3072
+
+performance:
+  render_distance: 6
+  max_fps: 250
+  particles: "reduced"
+  smooth_lighting: true
+
+visual:
+  crosshair: "clear"
+  nametags: "readable"
+  health_bar: "high_contrast"
+  armor_status: "visible"
+  hud: "minimal"
+  item_cooldowns: "readable"
+
+mods:
+  allowed:
+    - "OptiFine 1.8.9"
+    - "BetterFps"
+    - "Keystrokes"
+    - "ArmorStatusHUD"
+    - "ItemPhysic Lite"
+    - "Minimal HUD Tweaks"
+    - "Custom Crosshair"
+  blocked:
+    - "AutoClicker"
+    - "Aimbot"
+    - "Reach Hack"
+    - "ESP"
+    - "Wallhack"
+    - "AutoBlock Macro"
+    - "Movement Packet Spoofing"
+
+bedwars_focus:
+  target: "PvP readability and FPS stability"
+  priorities:
+    - "High visibility of armor and health"
+    - "Clean crosshair and item readability"
+    - "Low-conflict visual enhancements"
+    - "Reduced particle and HUD clutter"
+
+notes:
+  - "This profile is intended to be safe, readable, and compatible with standard Bedwars server rules."
+  - "It does not include cheat automation or unfair advantage features."
+  - "Profiles should be validated against the exact server rules before use in competitive play."
