@@ -1,6 +1,6 @@
-# Conservative Java options for Minecraft 1.8.9
+# Conservative optional JVM arguments for Minecraft 1.8.9
 
-Start with the launcher's default JVM arguments. If you need a small, testable baseline, add only:
+Start with OneClient's default JVM arguments. If you have enough system RAM and want to test a small explicit heap/G1 setup, try these arguments individually for this instance:
 
 ```text
 -Xms1G
@@ -8,6 +8,6 @@ Start with the launcher's default JVM arguments. If you need a small, testable b
 -XX:+UseG1GC
 ```
 
-Use a maximum heap appropriate for the machine; 2–3 GiB is a starting point, not a guaranteed optimum. Leave room for CachyOS, the desktop, and other applications. If startup or frame pacing becomes worse, remove custom options and compare against defaults.
+These are not guaranteed optimizations. Use a smaller `-Xmx` if CachyOS, the desktop, or other applications need more memory. Compare with launcher defaults and remove custom options if startup, stutter, or stability worsens.
 
-Do not paste long flag bundles from generic optimization guides without checking that the selected Java 8 runtime supports them. Avoid forcing Java2D/headless/OpenGL properties or setting a fixed young-generation size for this profile without a measured reason.
+Do not use the historical long flag bundles by default, force Java2D/headless/OpenGL properties, or allocate a fixed young generation without measurements. Check the selected Java runtime and logs if a JVM flag is rejected.

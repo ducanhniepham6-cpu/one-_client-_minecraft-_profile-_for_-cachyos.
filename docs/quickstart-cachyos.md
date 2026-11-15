@@ -1,65 +1,69 @@
 # CachyOS quick start: OneClient + Minecraft 1.8.9
 
-This guide sets up a separate Minecraft 1.8.9 Bedwars instance on CachyOS. It does not install a custom client or redistribute mods. `config/bedwars-profile.yaml` is a planning template, not a file OneClient imports directly.
+This guide sets up a separate Minecraft 1.8.9 Bedwars instance on CachyOS. This repository is documentation and configuration guidance only: it does not install a client, distribute Minecraft/Java/mod binaries, or provide an importable OneClient profile. The YAML under `config/` is a template, not an input format supported by OneClient.
 
-## 1. Install OneClient
+## 1. Download OneClient from its official release
 
-Open the [OneLauncher releases page](https://github.com/Polyfrost/OneLauncher/releases/latest) and download the Linux x86_64 AppImage or Flatpak asset that matches your system. Prefer the release page over third-party mirrors. The release page also provides `.sig` files for some assets; follow the project's published verification instructions if you verify signatures.
+Open the [OneLauncher 2.10.2 release](https://github.com/Polyfrost/OneLauncher/releases/tag/oneclient-2.10.2) or the [latest releases page](https://github.com/Polyfrost/OneLauncher/releases/latest). For x86_64 Linux, choose the AppImage or Flatpak asset listed on the release page. Do not use a package for a different architecture. The release includes AppImage signature assets; follow the project's official verification instructions if verifying a signature.
 
-For an AppImage saved as `~/Downloads/OneClient.AppImage`:
+For an AppImage downloaded to `~/Downloads`, first inspect the actual filename, then run it (replace the example name with the exact asset name you downloaded):
 
 ```bash
-chmod +x ~/Downloads/OneClient.AppImage
-~/Downloads/OneClient.AppImage
+ls -1 ~/Downloads/*AppImage
+chmod +x ~/Downloads/<downloaded-appimage>.AppImage
+~/Downloads/<downloaded-appimage>.AppImage
 ```
 
-The release assets are built for x86_64 Linux. If you have a different architecture, check the release assets before installing.
+Do not install an assumed Flatpak application ID from a command copied elsewhere; use the Flatpak asset/installation instructions on the official release page.
 
-## 2. Make an isolated instance
+## 2. Create an isolated instance
 
-In OneClient, create a new cluster/instance and set Minecraft to **1.8.9**. Give it a distinct name such as `Bedwars 1.8.9 - Clean`; use a dedicated game directory if the UI offers that option. This keeps the test profile separate from existing worlds, mods, and settings.
+In OneClient, create a separate cluster/instance for **Minecraft 1.8.9**, named for example `Bedwars 1.8.9 - Clean`. Use a dedicated game directory if the launcher offers it. Do not overwrite or migrate an existing instance for this first test.
 
-Start with the vanilla 1.8.9 instance once before adding mods. If the launcher offers Java runtime selection, choose a Java 8 runtime for Minecraft 1.8.9. Verify the selected Java executable/version in the launcher settings or game log instead of assuming the system default is Java 8.
+Select Java 8 for this instance if OneClient offers a managed or user-selected runtime. Confirm the selected runtime in the launch log. CachyOS package availability and package names can vary; do not assume `jre8-openjdk` is available from the standard repositories or change the system-wide Java default blindly. See [CachyOS setup notes](cachyos-setup.md).
 
 ## 3. Establish a clean baseline
 
 1. Launch the unmodded instance and reach the main menu.
-2. Join your intended Bedwars server and check that the server permits your planned client-side mods.
-3. Note FPS, frame pacing, resolution, and any launcher/game errors.
-4. Close the game normally and keep the generated logs if it fails.
+2. If the launcher cannot create or start 1.8.9, stop here and save its error/log; do not install random loaders or jars to work around it.
+3. Check the rules of your Bedwars server before using any third-party client-side mod.
+4. Note FPS, frame pacing, resolution, and launcher/game errors in the performance checklist.
+5. Close the game normally and retain the log if startup fails.
 
-Do not start by importing an entire unknown client or modpack. Add one trusted mod at a time and retest after each change.
+Do not start by importing an unknown client or modpack. Add only a verified mod, one at a time, and retest after each change.
 
-## 4. Add the visual layer cautiously
+## 4. Add optional visual mods cautiously
 
-Use `docs/bedwars-mod-list.md` as a compatibility checklist, not as proof that any named mod is current, safe, or allowed by your server. For each mod, confirm all of the following from the developer's official page:
+Use `bedwars-mod-list.md` as a verification policy, not as confirmation that a named mod is current, compatible, or server-approved. Before installing, verify that the exact official release:
 
-- it explicitly has a Minecraft 1.8.9 build;
-- it matches the instance's loader and other installed mods;
-- its current server rules permit its features;
-- the downloaded file comes from the official project/provider page.
+- explicitly supports Minecraft 1.8.9;
+- matches the instance's actual loader and dependencies;
+- has features permitted by your server's current rules;
+- comes from the official project/provider page.
 
-Keep a copy of the clean `mods/` and `config/` directories. If OneClient shows a checksum for a download, do not bypass a failed verification.
+Keep the clean instance as a rollback. Do not bypass a failed checksum/signature check.
 
-## 5. CachyOS checks
+## 5. CachyOS graphics and performance
 
-- Use the GPU driver stack appropriate for your hardware; do not force Vulkan for Minecraft 1.8.9. Test the default OpenGL path first.
-- Keep shader packs off while establishing the baseline.
-- Start with a render distance of 6 chunks and reduced particles; tune based on actual frame pacing.
-- Use the conservative JVM options in `config/java-opts.txt`, then compare with no custom flags if startup or stability worsens.
-- Avoid running multiple overlapping HUD mods.
+- Use the normal driver stack appropriate to your GPU; test the game's default OpenGL path first. Do not force Vulkan for this legacy game.
+- Keep shaders off while establishing the baseline.
+- Start around 6 chunks and reduced particles; tune using the same scene and checklist.
+- Start with default JVM arguments. Only test the short optional arguments in `config/java-opts.txt` if needed; revert if startup or frame pacing worsens.
+- Avoid overlapping HUD mods.
 
 ## Troubleshooting
 
-- **Wrong Java:** check the instance's configured Java path and the game log; select Java 8 for this legacy version.
-- **Crash after adding a mod:** remove the last added mod from this dedicated instance and retry; inspect the crash report and launcher log.
-- **AppImage does not start:** confirm it is executable and x86_64-compatible; try the Flatpak asset from the same official release if appropriate.
-- **No improvement in FPS:** remove custom JVM flags first, then lower render distance and effects one setting at a time.
+- **Wrong Java:** select Java 8 for this instance and confirm the executable/version in the game log.
+- **Launcher cannot start 1.8.9:** retain the error and verify OneClient's documented support for that game/loader combination before proceeding. This repo does not implement legacy-version support.
+- **Crash after adding a mod:** remove the last added mod from this dedicated instance and inspect its crash report/log.
+- **AppImage does not start:** confirm executable permission and architecture; use only the official release asset and its published instructions.
+- **No FPS improvement:** compare against defaults, then change render distance and effects one at a time.
 
 ## Project links
 
-- [OneClient releases](https://github.com/Polyfrost/OneLauncher/releases/latest)
-- [Profile plan](bedwars-profile.md)
+- [OneClient 2.10.2 release](https://github.com/Polyfrost/OneLauncher/releases/tag/oneclient-2.10.2)
+- [Latest OneClient releases](https://github.com/Polyfrost/OneLauncher/releases/latest)
+- [Recommended default profile](bedwars-default-profile.md)
 - [Mod verification checklist](bedwars-mod-list.md)
 - [CachyOS setup notes](cachyos-setup.md)
-- [Profile comparison](profile-comparison.md)
+- [Performance checklist](bedwars-performance-checklist.md)

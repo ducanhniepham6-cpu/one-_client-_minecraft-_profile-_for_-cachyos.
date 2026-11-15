@@ -1,68 +1,47 @@
-# CachyOS setup guide for Bedwars 1.8.9
+# CachyOS setup notes: Bedwars 1.8.9
 
-This guide is designed for Arch-based Linux systems such as CachyOS. It focuses on a stable Bedwars-friendly Java 8 + OptiFine setup.
+These notes cover the environment around OneClient on CachyOS/Arch. They do not promise that OneClient supports every legacy loader/OptiFine combination, and they do not bundle Java or Minecraft files.
 
-## 1) Install Java 8
+## OneClient package
 
-```bash
-sudo pacman -Syu
-sudo pacman -S jre8-openjdk
-```
+Use the official [OneClient 2.10.2 release](https://github.com/Polyfrost/OneLauncher/releases/tag/oneclient-2.10.2) or [latest releases](https://github.com/Polyfrost/OneLauncher/releases/latest). Select an asset that matches your architecture; the release page lists x86_64 Linux AppImage/Flatpak assets and AppImage signature files. Use the release's instructions rather than an assumed Flatpak application ID or third-party mirror.
 
-If your system uses an alternative Java 8 package name, install the supported package for your architecture.
-
-## 2) Install Java 8 launcher support
-
-If your launcher requires a Java path override, point it to the Java 8 binary in the installation directory.
-
-Example:
+For an AppImage, inspect its exact downloaded name, then make that file executable and run it:
 
 ```bash
-/usr/lib/jvm/java-8-openjdk/bin/java
+ls -1 ~/Downloads/*AppImage
+chmod +x ~/Downloads/<downloaded-appimage>.AppImage
+~/Downloads/<downloaded-appimage>.AppImage
 ```
 
-## 3) Install OptiFine 1.8.9
+## Java 8
 
-Download the correct OptiFine 1.8.9 jar and install it through your preferred launcher or through the standard OptiFine installer flow.
+Minecraft 1.8.9 is a legacy version and typically needs Java 8. First prefer a Java runtime managed/selected by OneClient for the specific instance, if available. Otherwise, check CachyOS's current supported package source and verify the installed runtime before assigning its path. Java 8 packages may not be present in the standard repositories, so this guide intentionally does not claim that `sudo pacman -S jre8-openjdk` will work.
 
-## 4) Use a clean mod folder
+Read-only checks:
 
-Keep a clean profile folder, such as:
-
-```text
-.minecraft/versions/1.8.9-Bedwars-Visual/
+```bash
+java -version
+arch
 ```
 
-Only install the whitelisted mods from `docs/bedwars-mod-list.md`.
+Set Java per-instance in the launcher where possible; avoid changing the global Java alternative solely for Minecraft.
 
-## 5) Recommended launch configuration
+## Instance and loader
 
-Use the settings in `config/java-opts.txt` as the base. Keep the profile minimal and stable.
+1. Create a dedicated instance named `Bedwars 1.8.9 - Clean`.
+2. Try vanilla 1.8.9 first and save any launch error.
+3. Before adding Forge or OptiFine, confirm that OneClient supports the exact version/loader workflow you intend to use. This documentation repo cannot add that support to OneClient.
+4. Preserve the vanilla instance as a rollback; do not install unknown jars into the global game directory.
 
-## 6) GPU and desktop recommendations
+## Graphics and CachyOS
 
-- Use the stable Mesa stack
-- Prefer OpenGL over excessive shader-heavy pipelines for Bedwars
-- Avoid running extra desktop compositing effects while playing
-- Disable unnecessary visual overlays
+- Start with the normal GPU driver and OpenGL configuration; do not force Vulkan for Minecraft 1.8.9.
+- Disable shaders for the baseline, start with about 6 chunks, and reduce particles.
+- Change one setting at a time and record results using `bedwars-performance-checklist.md`.
+- Begin with launcher-default JVM arguments. `config/java-opts.txt` contains only a small optional test set, not a guaranteed performance tweak.
+- Keep enough RAM available for CachyOS and the desktop; increasing heap is not automatically an FPS improvement.
 
-## 7) Validate the profile
+## Safety and rollback
 
-Before using it in competitive play:
-- test FPS stability
-- test click response
-- test server compatibility
-- test whether your HUD remains readable during combat
-
-## 8) Avoid common mistakes
-
-- do not install every mod on the internet
-- do not stack multiple HUD mods with duplicate overlay features
-- do not enable shader packs or heavy effects while playing PvP
-- do not use any mod that alters input, movement, or line-of-sight behavior
-
-## 9) Recommended default profile name
-
-- `Bedwars Visual 1.8.9`
-- `Clean Bedwars`
-- `Tournament Safe`
+Check server policy before every optional mod. Verify its exact 1.8.9 release, loader, dependencies, official source and published integrity data. Keep mods/config isolated to this instance. Exclude input automation, hidden-information overlays, reach/aim changes, packet manipulation, and anti-cheat bypasses.
