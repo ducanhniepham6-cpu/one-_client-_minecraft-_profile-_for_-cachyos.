@@ -1,0 +1,41 @@
+version: "1.8.9"
+profile_name: "Bedwars Visual Safe"
+java_version: "8"
+loader: "OptiFine"
+platform: "CachyOS/Linux"
+
+profile_type: "visual_only"
+allowed_mods:
+  - "OptiFine 1.8.9"
+  - "BetterFps"
+  - "Keystrokes Mod"
+  - "Armor Status HUD"
+  - "Custom Crosshair"
+  - "ItemPhysic Lite"
+  - "Minimal HUD Tweaks"
+
+blocked_mods:
+  - "AutoClicker"
+  - "AutoBlock Macro"
+  - "Aimbot"
+  - "Reach Hack"
+  - "ESP"
+  - "Wallhack"
+  - "Packet Manipulation"
+
+performance:
+  render_distance: 6
+  particles: "reduced"
+  fov: 90
+  max_fps: 250
+
+readability:
+  health_bar: "high_contrast"
+  armor_status: "visible"
+  item_cooldowns: "readable"
+  crosshair: "clear"
+  nametags: "readable"
+
+notes:
+  - "This profile is intentionally minimal and safe."
+  - "The objective is visual clarity and FPS stability, not unfair advantage."

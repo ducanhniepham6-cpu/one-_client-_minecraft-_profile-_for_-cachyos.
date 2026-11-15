@@ -1,0 +1,43 @@
+# Bedwars profile template (documentation only)
+version: "1.8.9"
+profile_name: "Clean Bedwars"
+platform: "CachyOS/Linux"
+
+# OneClient does not import this YAML. Apply settings manually in a separate instance.
+instance:
+  name: "Bedwars 1.8.9 - Clean"
+  isolated: true
+  game_version: "1.8.9"
+
+runtime:
+  java_major: 8
+  select_per_instance: true
+  jvm_args: "launcher_defaults"
+
+mods:
+  initial_set: []
+  allow_only_after_verification: true
+  require_exact_minecraft_1_8_9_release: true
+  require_loader_match: true
+  require_server_policy_check: true
+  binaries_included: false
+
+starting_settings:
+  render_distance_chunks: 6
+  particles: "reduced"
+  shaders: "off"
+
+prohibited_features:
+  - "autoclicker_or_input_automation"
+  - "aim_assistance_or_reach_change"
+  - "esp_or_wallhack"
+  - "automated_combat_or_bridging"
+  - "packet_manipulation_or_anticheat_bypass"
+
+profiles:
+  - name: "Clean Bedwars"
+    optional_mods: false
+  - name: "Visual Bedwars"
+    optional_mods: "only_individually_verified_and_server_permitted"
+  - name: "Tournament Safe"
+    optional_mods: "vanilla_or_explicitly_approved_only"
