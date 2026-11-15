@@ -2,15 +2,13 @@
 
 ## 2026-11-15
 
-- Thêm hướng dẫn nhanh cho CachyOS với OneClient, Minecraft 1.8.9, Java 8
-- Thêm tài liệu so sánh profile Clean / Visual / Tournament Safe
-- Thêm quy tắc xác minh mod theo mức độ an toàn và kiểm tra server
-- Thêm hướng dẫn cài đặt theo từng bước và thứ tự mod hợp lý
-- Cập nhật README với mục tiêu rõ ràng: visual-only, Bedwars, không cheat
+- Added a default Clean Bedwars setup and explicit completion/validation checklist.
+- Clarified that the YAML is documentation only, not a OneClient-importable profile.
+- Updated CachyOS/OneClient 2.10.2 guidance to avoid assuming Java 8 package availability or loader support.
+- Added HUD layout, performance, quick-tune, mod verification, and profile comparison guides.
+- Kept the project visual-only; no mod binaries or cheat features are included.
 
 ## 2026-11-14
 
-- Thiết lập repo ban đầu cho Bedwars Visual Profile
-- Thêm cấu hình Java 8 và profile YAML mẫu
-- Thêm tài liệu mô tả profile Bedwars an toàn và không gian lận
-- Thêm hướng dẫn CachyOS và whitelist/blacklist thanh toán
+- Created the Bedwars 1.8.9 visual profile documentation baseline.
+- Added conservative optional Java arguments and CachyOS notes.
