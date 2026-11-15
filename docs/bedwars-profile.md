@@ -1,107 +1,37 @@
-# Bedwars Visual Profile (Minecraft 1.8.9)
+# Bedwars Visual Profile for Minecraft 1.8.9 on CachyOS
 
-This document describes the safest and most effective way to build a Bedwars-oriented visual profile for Minecraft 1.8.9 on Linux/CachyOS.
+A practical, **visual-only** setup plan for a separate OneClient Minecraft 1.8.9 instance. It emphasizes stable startup, readable visuals, and conservative CachyOS settings. It does not include mod binaries or implement a custom Minecraft client.
 
-## Design principles
+## Goal and boundaries
 
-1. Stability first
-2. Clear PvP readability
-3. Performance-friendly on modern systems
-4. No cheat features or unfair automation
-5. Minimal mod conflicts
+- Keep Bedwars in its own instance so existing worlds and configurations are not affected.
+- Start from a vanilla 1.8.9 baseline, then test optional graphics/HUD mods one at a time.
+- Verify exact 1.8.9 version, loader, official download source, and the target server's rules for each mod.
+- Exclude automation, hidden-information overlays, combat advantages, packet manipulation, and anti-cheat bypasses.
 
-## Recommended runtime
+## Requirements and profile files
 
-- Minecraft: 1.8.9
-- Java: Java 8
-- Loader: OptiFine or minimal Forge-compatible setup
-- OS: CachyOS / Arch Linux
+- Minecraft 1.8.9
+- Java 8 selected for the instance
+- CachyOS/Arch-based Linux, x86_64 assets where applicable
+- `config/bedwars-profile.yaml` is a project template only; OneClient does not import it directly.
+- `config/java-opts.txt` contains conservative optional JVM settings; begin with launcher defaults.
+
+## Related guides
+
+- [Quick start on CachyOS](quickstart-cachyos.md)
+- [Mod verification policy](bedwars-mod-list.md)
+- [Recommended installation order](recommended-mod-order.md)
+- [Compare the three profiles](profile-comparison.md)
 
 ## Visual goals
 
-The profile should improve:
-- crosshair visibility
-- item clarity and cooldown readability
-- armor and health visibility
-- scoreboard readability
-- low-latency, non-overwhelming HUD
-- block and sword animations that remain crisp during fast fights
+Prefer clarity without clutter: readable crosshair, minimal HUD overlap, reduced particles, and steady frame pacing. Avoid stacking multiple mods that draw the same HUD element. Do not assume a feature is allowed just because it is client-side; check the server's rules.
 
-## Allowed mods / safe visual layer
+## Three profiles
 
-The following are examples of safe visual or utility mods that are commonly used in 1.8.9 setups. This is a guideline, not a required list.
+- **Clean Bedwars:** vanilla baseline; recommended first.
+- **Visual Bedwars:** add only individually verified visual/HUD mods that the server permits.
+- **Tournament Safe:** vanilla or only explicitly approved mods; if policy is unclear, use vanilla.
 
-- OptiFine 1.8.9
-- BetterFps
-- Keystrokes Mod
-- Armor Status HUD
-- ItemPhysic Lite
-- Custom Crosshair mod
-- Minimal HUD tweak pack
-- Low-overhead UI enhancement mods
-
-## Explicit blacklist
-
-The following are not allowed in this profile:
-- auto-clicker / auto-hit tools
-- auto-block macros
-- aim assist
-- reach hacks
-- ESP / wall hacks
-- force-field overlays that reveal hidden players
-- packet manipulation or fake movement clients
-
-## Recommended Bedwars-specific configuration
-
-### Profile A: Clean Bedwars
-
-Best for everyday play.
-
-- OptiFine enabled
-- Simple HUD, minimal overlays
-- Clear scoreboard and health bars
-- Reduced particles and minimal shader clutter
-- Keep the UI lightweight
-
-### Profile B: Visual Bedwars
-
-Best for players who want stronger readability.
-
-- More contrast on health and armor indicators
-- Bigger item labels / better cooldown clarity
-- Slightly more visible crosshair and nametags
-- Conservative effects only
-
-### Profile C: Tournament Safe
-
-Best for server compatibility and minimal risk.
-
-- Only essential visual mods
-- No experimental or hidden feature mods
-- Strict whitelist only
-- Prefer minimal effects while preserving clarity
-
-## Suggested installation flow
-
-1. Install Java 8 on CachyOS
-2. Install OptiFine 1.8.9
-3. Install only the approved visual HUD/mod list
-4. Disable experimental shaders and heavy animations
-5. Test FPS, click response, and PvP readability
-6. Keep a backup of the mod folder and config files
-
-## CachyOS tuning tips
-
-- Use the default stable Mesa driver stack
-- Avoid excessive shader packs for PvP
-- Keep particle and fog settings conservative
-- Prefer a stable OpenGL pipeline over high-end shader-heavy setup
-- Disable unnecessary desktop compositing during play if needed
-
-## Notes
-
-This profile is meant to improve clarity, not automate or cheat. It should be used responsibly and only within the rules of your server.
-
----
-
-See also: `config/bedwars-profile.yaml` and `config/java-opts.txt`.
+See [profile comparison](profile-comparison.md) for settings and promotion checks.

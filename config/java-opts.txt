@@ -1,31 +1,13 @@
-# Java 8 tuning for Minecraft 1.8.9 on CachyOS
+# Conservative Java options for Minecraft 1.8.9
 
-Use these as a starting point for a Bedwars instance on a modern Linux machine.
+Start with the launcher's default JVM arguments. If you need a small, testable baseline, add only:
 
-```
--Xms1024M
--Xmx3072M
--Xmn768M
+```text
+-Xms1G
+-Xmx3G
 -XX:+UseG1GC
--XX:+UnlockExperimentalVMOptions
--XX:MaxGCPauseMillis=20
--XX:G1NewSizePercent=20
--XX:G1MaxNewSizePercent=35
--XX:TargetSurvivorRatio=90
--XX:ParallelGCThreads=4
--XX:ConcGCThreads=2
--XX:+DisableExplicitGC
--XX:+UseCompressedOops
--XX:InitiatingHeapOccupancyPercent=35
--Dsun.java2d.opengl=true
--Djava.awt.headless=true
--XX:+AlwaysActAsServerClassMachine
 ```
 
-## Tuning notes
+Use a maximum heap appropriate for the machine; 2–3 GiB is a starting point, not a guaranteed optimum. Leave room for CachyOS, the desktop, and other applications. If startup or frame pacing becomes worse, remove custom options and compare against defaults.
 
-- If your machine has less RAM, reduce `-Xmx` to 2048M.
-- If your system is very fast, you can use 3072M or 4096M, but do not exceed your memory budget.
-- Keep `-Xms` and `-Xmx` close to reduce heap churn.
-- Avoid adding experimental flags that are not required for Java 8 stability.
-- Always test actual FPS and stability before changing the settings permanently.
+Do not paste long flag bundles from generic optimization guides without checking that the selected Java 8 runtime supports them. Avoid forcing Java2D/headless/OpenGL properties or setting a fixed young-generation size for this profile without a measured reason.

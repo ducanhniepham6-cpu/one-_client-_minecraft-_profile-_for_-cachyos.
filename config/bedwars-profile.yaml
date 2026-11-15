@@ -1,57 +1,38 @@
 version: "1.8.9"
-profile_name: "Bedwars Visual"
+profile_name: "Bedwars Visual Safe"
 java_version: "8"
-loader: "OptiFine"
 platform: "CachyOS/Linux"
 
-safe_mode: true
-cheat_features_enabled: false
+# Documentation/template only: OneClient does not import this YAML directly.
+profile_type: "visual_only"
+instance_isolated: true
 
-memory:
-  min_mb: 1024
-  max_mb: 3072
+runtime:
+  java_major: 8
+  custom_jvm_args_file: "config/java-opts.txt"
 
-performance:
-  render_distance: 6
-  max_fps: 250
+starting_settings:
+  render_distance_chunks: 6
   particles: "reduced"
-  smooth_lighting: true
-
-visual:
-  crosshair: "clear"
-  nametags: "readable"
-  health_bar: "high_contrast"
-  armor_status: "visible"
-  hud: "minimal"
-  item_cooldowns: "readable"
+  shaders: "off_during_validation"
 
 mods:
-  allowed:
-    - "OptiFine 1.8.9"
-    - "BetterFps"
-    - "Keystrokes"
-    - "ArmorStatusHUD"
-    - "ItemPhysic Lite"
-    - "Minimal HUD Tweaks"
-    - "Custom Crosshair"
-  blocked:
-    - "AutoClicker"
-    - "Aimbot"
-    - "Reach Hack"
-    - "ESP"
-    - "Wallhack"
-    - "AutoBlock Macro"
-    - "Movement Packet Spoofing"
+  policy: "verify_each_candidate_before_install"
+  install_one_at_a_time: true
+  require_explicit_minecraft_1_8_9_release: true
+  require_loader_match: true
+  require_server_rule_check: true
+  binaries_included: false
 
-bedwars_focus:
-  target: "PvP readability and FPS stability"
-  priorities:
-    - "High visibility of armor and health"
-    - "Clean crosshair and item readability"
-    - "Low-conflict visual enhancements"
-    - "Reduced particle and HUD clutter"
+prohibited_features:
+  - "autoclicker"
+  - "aim_assistance"
+  - "reach_changes"
+  - "esp_or_wallhack"
+  - "automated_combat_or_bridging"
+  - "packet_manipulation_or_anticheat_bypass"
 
-notes:
-  - "This profile is intended to be safe, readable, and compatible with standard Bedwars server rules."
-  - "It does not include cheat automation or unfair advantage features."
-  - "Profiles should be validated against the exact server rules before use in competitive play."
+profiles:
+  - "Clean Bedwars"
+  - "Visual Bedwars"
+  - "Tournament Safe"

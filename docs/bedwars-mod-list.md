@@ -1,89 +1,35 @@
-# Bedwars mod list and policy
+# Bedwars mod list and verification policy
 
-This document defines the safe visual support layer for a Bedwars-focused 1.8.9 client profile on CachyOS/Linux. The focus is on readability, FPS stability, and comfort, not unfair advantages.
+This file is a **verification checklist**, not a claim that particular downloads are currently maintained, safe, compatible, or approved by a server. Mod names and compatibility data can change. Verify the exact release before installation.
 
-## Core rule
+## Safe profile scope
 
-No cheat features. No macros. No ESP. No reach. No auto-aim. No packet manipulation.
+The goal is client-side presentation and comfort for Minecraft 1.8.9: performance settings, a readable crosshair, or a small HUD element. OneClient itself is the launcher; this repository does not contain a Minecraft client implementation or mod binaries.
 
-This is a visual enhancement profile only.
+## Candidate categories
 
-## Approved baseline
+Only consider a candidate after confirming its official project page explicitly offers a Minecraft 1.8.9 release and the correct loader:
 
-### Required
-- OptiFine 1.8.9
+- **Graphics/performance:** optional graphics layer such as a compatible OptiFine build. Test the exact build with the chosen loader.
+- **HUD/readability:** choose at most one mod for each overlapping element (for example, keystrokes or armor status), and confirm the server allows it.
+- **Cosmetic animations:** optional and only where permitted; disable if it reduces visibility or performance.
 
-### Strongly recommended
-- BetterFps
-- Keystrokes Mod
-- Armor Status HUD
-- Custom Crosshair
-- ItemPhysic Lite
-- Minimal HUD / simple overlay enhancement set
+No specific third-party mod is marked as verified or approved by this repository. Do not use the former example list as a verified whitelist without checking each mod's official release metadata.
 
-### Optional only if well-tested
-- Old Animations (if you specifically want the 1.7-style feel)
-- Dynamic lights / reduced light noise only if the server allows it
-- Minimal range or direction indicators if the server rules permit them
+## Do not use
 
-## Banned / prohibited
+- autoclickers or automated clicking;
+- aim assistance, reach changes, or automated combat/bridging;
+- ESP, wallhacks, or overlays revealing hidden information;
+- packet manipulation, anti-cheat bypasses, or fake movement;
+- any feature prohibited by the target server, even if bundled with a visual mod.
 
-The following are explicitly not allowed in this project:
-- AutoClicker
-- AutoBlock macros
-- Aimbot
-- Reach hack
-- ESP / wallhack
-- Ghost/hidden player overlays
-- Fake movement or packet editing
-- Any mod designed to bypass anti-cheat or alter server-side game logic
+## Verify every candidate
 
-## Recommended categories
+1. Open the developer's official page or the official Modrinth/CurseForge project page.
+2. Confirm an actual 1.8.9 file and loader match; do not infer compatibility from a title or a newer release.
+3. Review dependencies, changelog, permissions/license, and documented behavior.
+4. Download only from that official source and retain its checksum/signature where published.
+5. Add it to a disposable/dedicated instance, one at a time; check startup, logs, and server rules.
 
-### 1) HUD / readability
-- custom crosshair
-- armor display
-- health / potion display
-- item cooldown visibility
-- scoreboard readability
-
-### 2) Performance
-- BetterFps
-- reduced animation overhead
-- lower particle churn
-- conservative render distance
-
-### 3) Visual polish
-- item physics (lightweight)
-- old animation style only if desired
-- subtle motion effect without strong distortion
-
-## Suggested safe default stack
-
-Use this as the initial installed list:
-
-1. OptiFine 1.8.9
-2. BetterFps
-3. Keystrokes Mod
-4. Armor Status HUD
-5. Custom Crosshair
-6. ItemPhysic Lite
-7. Minimal HUD tweaks
-
-This gives a strong Bedwars visual profile without layering too many conflicting mods.
-
-## Important compatibility note
-
-Mod compatibility varies by:
-- Minecraft version
-- Forge/OptiFine setup
-- your drivers and GPU stack
-- whether the target server uses strict anti-cheat semantics
-
-Always test on the exact server before relying on the profile as a competitive setup.
-
-## Personal rule for this project
-
-If a mod improves raw combat advantage beyond pure readability, it is not part of this project.
-
-This project is a clean Bedwars visual profile designed to help the player read the game better and play more comfortably, not to cheat.
+See [recommended installation order](recommended-mod-order.md) and [profile comparison](profile-comparison.md).
