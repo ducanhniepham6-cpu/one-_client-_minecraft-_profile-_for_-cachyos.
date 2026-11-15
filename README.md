@@ -2,8 +2,9 @@
 
 A visual-only setup guide for a separate Minecraft 1.8.9 Bedwars instance. Start vanilla, select Java 8 explicitly, and add individually verified mods only when the target server permits them. No mod binaries or custom Minecraft client are included.
 
-## Guides
+## Start here
 
+- [Recommended default profile](docs/bedwars-default-profile.md)
 - [Quick start with OneClient on CachyOS](docs/quickstart-cachyos.md)
 - [Bedwars profile](docs/bedwars-profile.md)
 - [Visual profile breakdown](docs/visual-profile-breakdown.md)
